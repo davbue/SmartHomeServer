@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30523.141
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartHomeServer", "SmartHomeServer.csproj", "{F305E5A3-6E4A-4A6B-9D6C-2A9E1A31031A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F305E5A3-6E4A-4A6B-9D6C-2A9E1A31031A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F305E5A3-6E4A-4A6B-9D6C-2A9E1A31031A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F305E5A3-6E4A-4A6B-9D6C-2A9E1A31031A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F305E5A3-6E4A-4A6B-9D6C-2A9E1A31031A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0706C13A-5B29-47CD-B39E-632F3F54FE53}
+	EndGlobalSection
+EndGlobal
