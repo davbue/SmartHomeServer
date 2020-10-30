@@ -7,8 +7,10 @@ namespace SmartHomeServer.Models
 {
     public class Device
     {
-        public long Id { get; set; }
-        public string Name { get; set; }
-        public bool IsUsed { get; set; }
+        public long DeviceID { get; set; }
+        public string DeviceName { get; set; }
+        public bool Enabled { get; set; }
+        public int RoomID { get; set; }
+        public Room Room { get; set; }
     }
 }

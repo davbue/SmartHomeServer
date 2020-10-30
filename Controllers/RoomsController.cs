@@ -11,48 +11,48 @@ namespace SmartHomeServer.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class DevicesController : ControllerBase
+    public class RoomsController : ControllerBase
     {
         private readonly SmartHomeContext _context;
 
-        public DevicesController(SmartHomeContext context)
+        public RoomsController(SmartHomeContext context)
         {
             _context = context;
         }
 
-        // GET: api/Devices
+        // GET: api/Rooms
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Device>>> GetDevices()
+        public async Task<ActionResult<IEnumerable<Room>>> GetRooms()
         {
-            return await _context.Devices.ToListAsync();
+            return await _context.Rooms.ToListAsync();
         }
 
-        // GET: api/Devices/5
+        // GET: api/Rooms/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Device>> GetDevice(long id)
+        public async Task<ActionResult<Room>> GetRoom(long id)
         {
-            var device = await _context.Devices.FindAsync(id);
+            var room = await _context.Rooms.FindAsync(id);
 
-            if (device == null)
+            if (room == null)
             {
                 return NotFound();
             }
 
-            return device;
+            return room;
         }
 
-        // PUT: api/Devices/5
+        // PUT: api/Rooms/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutDevice(long id, Device device)
+        public async Task<IActionResult> PutRoom(long id, Room room)
         {
-            if (id != device.DeviceID)
+            if (id != room.RoomID)
             {
                 return BadRequest();
             }
 
-            _context.Entry(device).State = EntityState.Modified;
+            _context.Entry(room).State = EntityState.Modified;
 
             try
             {
@@ -60,7 +60,7 @@ namespace SmartHomeServer.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!DeviceExists(id))
+                if (!RoomExists(id))
                 {
                     return NotFound();
                 }
@@ -73,37 +73,37 @@ namespace SmartHomeServer.Controllers
             return NoContent();
         }
 
-        // POST: api/Devices
+        // POST: api/Rooms
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
-        public async Task<ActionResult<Device>> PostDevice(Device device)
+        public async Task<ActionResult<Room>> PostRoom(Room room)
         {
-            _context.Devices.Add(device);
+            _context.Rooms.Add(room);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetDevice), new { id = device.DeviceID }, device);
+            return CreatedAtAction("GetRoom", new { id = room.RoomID }, room);
         }
 
-        // DELETE: api/Devices/5
+        // DELETE: api/Rooms/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<Device>> DeleteDevice(long id)
+        public async Task<ActionResult<Room>> DeleteRoom(long id)
         {
-            var device = await _context.Devices.FindAsync(id);
-            if (device == null)
+            var room = await _context.Rooms.FindAsync(id);
+            if (room == null)
             {
                 return NotFound();
             }
 
-            _context.Devices.Remove(device);
+            _context.Rooms.Remove(room);
             await _context.SaveChangesAsync();
 
-            return device;
+            return room;
         }
 
-        private bool DeviceExists(long id)
+        private bool RoomExists(long id)
         {
-            return _context.Devices.Any(e => e.DeviceID == id);
+            return _context.Rooms.Any(e => e.RoomID == id);
         }
     }
 }
