@@ -11,48 +11,48 @@ namespace SmartHomeServer.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class DevicesController : ControllerBase
+    public class GatewaysController : ControllerBase
     {
         private readonly SmartHomeContext _context;
 
-        public DevicesController(SmartHomeContext context)
+        public GatewaysController(SmartHomeContext context)
         {
             _context = context;
         }
 
-        // GET: api/Devices
+        // GET: api/Gateways
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Device>>> GetDevices()
+        public async Task<ActionResult<IEnumerable<Gateway>>> GetGateways()
         {
-            return await _context.Devices.ToListAsync();
+            return await _context.Gateways.ToListAsync();
         }
 
-        // GET: api/Devices/5
+        // GET: api/Gateways/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Device>> GetDevice(long id)
+        public async Task<ActionResult<Gateway>> GetGateway(long id)
         {
-            Device device = await _context.Devices.FindAsync(id);
+            var gateway = await _context.Gateways.FindAsync(id);
 
-            if (device == null)
+            if (gateway == null)
             {
                 return NotFound();
             }
 
-            return device;
+            return gateway;
         }
 
-        // PUT: api/Devices/5
+        // PUT: api/Gateways/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutDevice(long id, Device device)
+        public async Task<IActionResult> PutGateway(long id, Gateway gateway)
         {
-            if (id != device.DeviceID)
+            if (id != gateway.GatewayID)
             {
                 return BadRequest();
             }
 
-            _context.Entry(device).State = EntityState.Modified;
+            _context.Entry(gateway).State = EntityState.Modified;
 
             try
             {
@@ -60,7 +60,7 @@ namespace SmartHomeServer.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!DeviceExists(id))
+                if (!GatewayExists(id))
                 {
                     return NotFound();
                 }
@@ -73,37 +73,37 @@ namespace SmartHomeServer.Controllers
             return NoContent();
         }
 
-        // POST: api/Devices
+        // POST: api/Gateways
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
-        public async Task<ActionResult<Device>> PostDevice(Device device)
+        public async Task<ActionResult<Gateway>> PostGateway(Gateway gateway)
         {
-            _context.Devices.Add(device);
+            _context.Gateways.Add(gateway);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetDevice", new { id = device.DeviceID }, device);
+            return CreatedAtAction("GetGateway", new { id = gateway.GatewayID }, gateway);
         }
 
-        // DELETE: api/Devices/5
+        // DELETE: api/Gateways/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<Device>> DeleteDevice(long id)
+        public async Task<ActionResult<Gateway>> DeleteGateway(long id)
         {
-            var device = await _context.Devices.FindAsync(id);
-            if (device == null)
+            var gateway = await _context.Gateways.FindAsync(id);
+            if (gateway == null)
             {
                 return NotFound();
             }
 
-            _context.Devices.Remove(device);
+            _context.Gateways.Remove(gateway);
             await _context.SaveChangesAsync();
 
-            return device;
+            return gateway;
         }
 
-        private bool DeviceExists(long id)
+        private bool GatewayExists(long id)
         {
-            return _context.Devices.Any(e => e.DeviceID == id);
+            return _context.Gateways.Any(e => e.GatewayID == id);
         }
     }
 }

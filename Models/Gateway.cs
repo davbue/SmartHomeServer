@@ -5,12 +5,13 @@ using System.Threading.Tasks;
 
 namespace SmartHomeServer.Models
 {
-    public class Room
+    public class Gateway
     {
+        public long GatewayID { get; set; }
         public long RoomID { get; set; }
-        public string RoomName { get; set; }
 
         //Navigation Properties
-        public ICollection<Gateway> Gateways { get; set; }
+        public ICollection<Device> Devices { get; set; }
+        public Room Room { get; set; }
     }
 }

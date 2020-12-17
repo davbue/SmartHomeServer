@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using SmartHomeServer.Models;
 
 namespace SmartHomeServer
 {
@@ -13,6 +14,7 @@ namespace SmartHomeServer
     {
         public static void Main(string[] args)
         {
+            InitDB();
             CreateHostBuilder(args).Build().Run();
         }
 
@@ -22,5 +24,17 @@ namespace SmartHomeServer
                 {
                     webBuilder.UseStartup<Startup>();
                 });
+
+        private static void InitDB()
+        {
+            using (var context = new SmartHomeContext())
+            {
+                // Creates the database if not exists
+                context.Database.EnsureCreated();
+
+                // Saves changes
+                context.SaveChanges();
+            }
+        }
     }
 }
