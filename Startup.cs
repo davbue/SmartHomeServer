@@ -20,6 +20,7 @@ namespace SmartHomeServer
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+            Clients.MQTTClient mQTTClient = new Clients.MQTTClient();
         }
 
         public IConfiguration Configuration { get; }
